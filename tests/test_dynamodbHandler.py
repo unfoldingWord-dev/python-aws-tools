@@ -7,7 +7,7 @@ class DynamoDBHandlerTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        with mock.patch("aws_tools.dynamodb_handler.boto3", mock.MagicMock()):
+        with mock.patch("d43_aws_tools.dynamodb_handler.boto3", mock.MagicMock()):
             cls.handler = aws_tools.dynamodb_handler.DynamoDBHandler("table_name")
         cls.handler.table = mock.MagicMock()
 

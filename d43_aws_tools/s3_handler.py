@@ -15,8 +15,7 @@ import json
 import boto3
 import botocore
 from boto3.session import Session
-from general_tools.file_utils import get_mime_type
-
+from mimetypes import MimeTypes
 
 class S3Handler(object):
     def __init__(self, bucket_name=None, aws_access_key_id=None, aws_secret_access_key=None, aws_region_name='us-west-2'):
@@ -131,7 +130,7 @@ class S3Handler(object):
         self.bucket.put_object(
             Key=key,
             Body=binary,
-            ContentType=get_mime_type(path),
+            ContentType=self._get_mime_type(path),
             CacheControl='max-age={0}'.format(cache_time)
         )
 
@@ -199,3 +198,12 @@ class S3Handler(object):
                 return None
         else:
             return self.resource.create_bucket(Bucket=bucket_name)
+
+    @staticmethod
+    def _get_mime_type(path):
+        mime = MimeTypes()
+
+        mime_type = mime.guess_type(path)[0]
+        if not mime_type:
+            mime_type = "text/{0}".format(os.path.splitext(path)[1])
+        return mime_type
