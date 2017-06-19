@@ -27,7 +27,7 @@ setup(
         'lambda'
     ],
     url='https://github.org/unfoldingWord-dev/python-aws-tools',
-    long_description=read('README.rst'),
+    long_description=read('README.md'),
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
