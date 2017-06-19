@@ -1,5 +1,5 @@
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 
@@ -16,12 +16,7 @@ def read(f_name):
 setup(
     name='d43-aws-tools',
     version='0.0.1',
-    packages=[
-        'dynamodb_handler',
-        's3_handler',
-        'ses_handler'
-    ],
-    # package_data={'converters': ['templates/*.html']},
+    packages=find_packages(),
     author='unfoldingWord',
     author_email='info@unfoldingword.org',
     description='Classes for accessing AWS APIs',
