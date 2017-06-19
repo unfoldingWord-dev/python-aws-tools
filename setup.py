@@ -38,16 +38,8 @@ setup(
         'Programming Language :: Python :: 2.7',
     ],
     install_requires=[
-        'requests==2.13.0',
-        'responses==0.5.1',
-        'gogs_client==1.0.3',
-        'bs4==0.0.1',
         'boto3==1.4.4',
-        'python-json-logger==0.1.5',
-        'markdown==2.6.8',
-        'future==0.16.0',
-        'pyparsing==2.1.10',
-        'usfm-tools==0.0.11',
-        'PyYAML==3.12'
+        'moto==1.0.1',
+        'mock==2.0.0'
     ]
 )

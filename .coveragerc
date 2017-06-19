@@ -1,0 +1,6 @@
+[run]
+source=
+    d43_aws_tools
+
+omit =
+    */__init__.py
