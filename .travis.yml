@@ -1,17 +1,20 @@
 language: python
 python:
-  - '2.7'
-
-before install:
-  - eval export AWS_ACCESS_KEY_ID=\$${TRAVIS_BRANCH}_AWS_ACCESS_KEY_ID
-  - eval export AWS_SECRET_ACCESS_KEY=\$${TRAVIS_BRANCH}_AWS_SECRET_ACCESS_KEY
-  - eval export AWS_REGION=\$${TRAVIS_BRANCH}_AWS_REGION
-
+- '2.7'
+- '3.3'
+- '3.4'
+- '3.5'
 install:
-  - pip install -r requirements.txt
-  - pip install coveralls
-
+- pip install -r requirements.txt
+- pip install coveralls
 script: coverage run test-setup.py test
-
 after_success:
-  - coveralls
+- coveralls
+deploy:
+  provider: pypi
+  user: unfoldingWord
+  password:
+    secure: PwucdegHGN3J7sDfSXbO+QC6wylB4oaV5rMKgFt2zNcI2LuLeSLSYsvomy20KS/aLMS8bpuwLRTIYWYQCixk3RO7A862DdbKTCxJVTN5t4IfA8a/XlowbTKYHMjvhhRealBw2ySxGXHHLqUxecTcVPVs1OpH9ImcqGwjHLUuhgU1X4vxUzzM9gKzXGmszlfg2IdKu9XDEHqCW/R0mmA8FocQ1CAC9uhAoa9+Byo4PCBuNHapdHDamEHEKzv6Thg/fvJUvm8Xl91B0TNTG8tXKyveOHCo0U4cs3siOk/U+/3sOIdvP7ASFALUfShGubFOdNKFV0abcpHb+xBbIi8y/a/81sHphlU8D/PB+qRWbNA9x259I4DXU5Z/EM9uczJ8XvC0hJvnm2MZo0bEHRPErwL+lICk5EHUQHkB+7HHoDLRbfptdfi9x0PLUXUdEoL5CZqi1p2g5uLtc/XXEQGotvMayxG9vvAWm3q1PX6vH0DzOG2GbB+Xgl4UGoE1oxI8LMmv4HWgtKBj2MM/uYl9Trx3e9wR/AOPiguegadTmNEkT7ujk0O9ykDiFHtjXYPvZovd4y4E5e8UsguIMty7L27mYvCGcoVAmLX85YbgCSIM49Kocg/HmfDaFVyRz6/He3vzYVeh3BzrtfcI4GIHbpYnvMApGIHHuFQr+aYK6pk=
+  on:
+    tags: true
+  distributions: sdist bdist_wheel
