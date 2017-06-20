@@ -21,7 +21,7 @@ setup(
     install_requires=[
         'coveralls==1.1',
         'boto3==1.4.4',
-        'moto==0.4.31'
+        'moto==0.4.31',
         'mock',  # travis reports syntax error in mock setup.cfg if we give version
     ],
     test_suite='tests'
