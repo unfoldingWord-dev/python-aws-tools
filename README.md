@@ -14,3 +14,12 @@ A library for performing actions against the AWS api
 
 [![Coverage Status](https://coveralls.io/repos/github/unfoldingWord-dev/python-aws-tools/badge.svg?branch=develop)](https://coveralls.io/github/unfoldingWord-dev/python-aws-tools?branch=develop)
 
+## Build
+
+Deploy via the command line:
+```bash
+$ python setup.py sdist bdist_wheel
+$ twine upload dist/*
+```
+
+Or tag a new release on the repo and let travis do the work.
