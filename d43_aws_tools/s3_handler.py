@@ -143,11 +143,11 @@ class S3Handler(object):
     def get_file_contents(self, key, catch_exception=True):
         if catch_exception:
             try:
-                return self.get_object(key).get()['Body'].read()
+                return self.get_object(key).get()['Body'].read().decode('utf-8')
             except:
                 return None
         else:
-            return self.get_object(key).get()['Body'].read()
+            return self.get_object(key).get()['Body'].read().decode('utf-8')
 
     def get_json(self, key, catch_exception = True):
         if catch_exception:
