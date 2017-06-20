@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='d43-aws-tools',
     version='0.0.1',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests', 'general_tools']),
     author='unfoldingWord',
     author_email='unfoldingword.org',
     description='Unit test setup file.',
