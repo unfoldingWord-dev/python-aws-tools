@@ -15,7 +15,7 @@ def read(f_name):
 
 setup(
     name='d43-aws-tools',
-    version='0.0.1',
+    version='1.0.1',
     packages=find_packages(exclude=['tests', 'general_tools']),
     author='unfoldingWord',
     author_email='info@unfoldingword.org',
