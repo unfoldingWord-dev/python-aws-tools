@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='d43-aws-tools',
-    version='1.0.1',
+    version='1.0.2',
     packages=find_packages(exclude=['tests', 'general_tools']),
     author='unfoldingWord',
     author_email='unfoldingword.org',
