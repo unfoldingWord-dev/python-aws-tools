@@ -2,6 +2,7 @@ from __future__ import absolute_import, unicode_literals, print_function
 import mock
 import unittest
 import d43_aws_tools as aws_tools
+from boto3.dynamodb.conditions import Attr
 
 class DynamoDBHandlerTests(unittest.TestCase):
 
@@ -86,6 +87,27 @@ class DynamoDBHandlerTests(unittest.TestCase):
             self.handler.table.scan.return_value = {"Items": data}
             self.assertEqual(self.handler.query_items(query), data)
             self.handler.table.scan.assert_called_once()
+
+    def test_query_bool_item(self):
+        """ Test a successful invocation of `query_item`. with a False boolean query"""
+        for cond in ("ne", "lt", "lte", "gt", "gte",
+                     "begins_with", "is_in", "contains"):
+            self.handler.table.reset_mock()
+            query = {
+                "ready": False
+            }
+            data = {"age": 30, "full_name": "John Doe", "ready": False}
+            self.handler.table.scan.return_value = {"Items": data}
+            self.assertEqual(self.handler.query_items(query), data)
+            self.handler.table.scan.assert_called_once()
+            err_msg = 'query_items: Expecting FilterExpression parameter for table.scan() but non found'
+            try:
+                self.handler.table.scan.assert_called_once_with()
+                # If the scan ran without an argument this is a failure
+                self.assertTrue(False, err_msg)
+            except Exception as e:
+                if err_msg in str(e):
+                    raise e
 
     def test_query_item_no_query(self):
         """Test a invocation of `query_item` with no query."""

@@ -121,7 +121,7 @@ class DynamoDBHandler(object):
                 else:
                     condition_str = 'eq'
 
-                if not value and only_fields_with_values:
+                if not isinstance(value, bool) and not value and only_fields_with_values:
                     continue
 
                 if condition_str == 'eq':
