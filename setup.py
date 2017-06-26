@@ -11,7 +11,8 @@ def read(f_name):
     README file and 2) it's easier to type in the README file than to put a raw
     string in below ...
     """
-    return open(os.path.join(os.path.dirname(__file__), f_name)).read()
+    here = os.path.abspath(os.path.dirname(__file__))
+    return open(os.path.join(here, f_name), 'r').read()
 
 setup(
     name='d43-aws-tools',
@@ -27,7 +28,7 @@ setup(
         'lambda'
     ],
     url='https://github.org/unfoldingWord-dev/python-aws-tools',
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
