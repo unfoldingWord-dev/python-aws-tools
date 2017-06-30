@@ -53,7 +53,7 @@ class DynamoDBHandler(object):
             Item=data
         )
 
-    def update_item(self, keys, data):
+    def update_item(self, keys, data, return_values='NONE'):
         expressions = []
         names = {}
         values = {}
@@ -79,13 +79,15 @@ class DynamoDBHandler(object):
                 Key=keys,
                 UpdateExpression='SET {0}'.format(', '.join(expressions)),
                 ExpressionAttributeValues=values,
-                ExpressionAttributeNames=names
+                ExpressionAttributeNames=names,
+                ReturnValues=return_values
             )
         else:
             return self.table.update_item(
                 Key=keys,
                 UpdateExpression='SET {0}'.format(', '.join(expressions)),
-                ExpressionAttributeValues=values
+                ExpressionAttributeValues=values,
+                ReturnValues=return_values
             )
 
     def delete_item(self, keys):
